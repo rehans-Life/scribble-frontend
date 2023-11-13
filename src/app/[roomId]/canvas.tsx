@@ -327,10 +327,10 @@ export default function Canvas() {
   };
 
   return (
-    <div className="md:h-full h-auto flex flex-col">
+    <div className="lg:h-full h-auto flex flex-col">
       <div
         ref={stageContainerRef}
-        className="w-full h-[400px] md:h-full relative flex items-center justify-center overflow-hidden"
+        className="w-full h-[300px] md:h-[500px] lg:h-full relative flex items-center justify-center overflow-hidden"
       >
         <AnimatePresence>
           {room?.gameState !== "drawing" && (
@@ -352,24 +352,24 @@ export default function Canvas() {
         <BounceIn initialDelay={0} isVisible={room?.gameState === "finished"}>
           <div className="flex flex-col items-center justify-center gap-y-10 p-2">
             <div className="flex flex-col items-center gap-y-1">
-              <div className="text-white text-center md:text-3xl xs:text-2xl text-xl font-medium">
+              <div className="text-white text-center md:text-3xl text-lg font-medium">
                 The correct word was{" "}
                 <span className="text-orange-200 ml-2 font-semibold">
                   {room?.guessWord}
                 </span>
               </div>
-              <div className="xs:text-lg text-center text-md text-white">
+              <div className="md:text-lg text-center text-md text-white">
                 Time is up!
               </div>
             </div>
-            <div className="w-full flex flex-col">
+            <div className="w-full flex flex-col max-h-36 md:max-h-[300px] overflow-y-auto  scrollbar scrollbar-thumb-slate-400 scrollbar-w-1.5 scrollbar-thumb scrollbar-thumb-rounded-md scroll">
               {sortedUsers?.map((user, index) => (
                 <div key={index} className="flex justify-between items-center">
-                  <div className={`xs:text-lg text-md font-medium`}>
+                  <div className={`md:text-lg text-md font-medium`}>
                     {user.name}
                   </div>
                   <div
-                    className={`xs:text-lg text-md font-semibold ${
+                    className={`md:text-lg text-md font-semibold ${
                       user.additionalPoints ? "text-green-500" : "text-red-500"
                     }`}
                   >
@@ -405,7 +405,7 @@ export default function Canvas() {
               </div>
             </div>
           ) : (
-            <div className="text-white xs:text-xl text-center text-lg  font-medium">
+            <div className="text-white md:text-xl text-center text-md font-medium p-1">
               {drawer?.name} is selecting a word...
             </div>
           )}
@@ -423,7 +423,7 @@ export default function Canvas() {
               disabled={!isAdmin}
               options={new Array(20)
                 .fill(0)
-                .map((_, index) => (index + 1).toString())}
+                .map((_, index) => (index + 2).toString())}
             >
               <IoPerson className="md:text-2xl sm:text-xl text-lg" />
             </RoomSelect>

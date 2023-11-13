@@ -67,18 +67,18 @@ export default function GameOptions() {
 
   return (
     <>
-      <div className="flex md:flex-col items-start gap-1 h-[250px] md:h-full w-full md:pl-2">
+      <div className="flex lg:flex-col items-start gap-1 h-[250px] lg:h-full w-full lg:pl-2">
         <Users />
-        <div className="flex flex-col justify-end w-full md:flex-grow flex-1 h-full bg-white relative rounded-sm overflow-hidden">
+        <div className="flex flex-col justify-end w-full lg:flex-grow flex-1 h-full bg-white relative rounded-sm overflow-hidden">
           <div
             ref={messagesRef}
-            className="h-full md:max-h-[310px] flex flex-col-reverse overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thumb-slate-400 scrollbar-w-1.5 scrollbar-thumb scrollbar-thumb-rounded-md scroll"
+            className="h-full lg:max-h-[220px] rounded-t-sm flex flex-col-reverse overflow-y-auto overflow-x-hidden scrollbar scrollbar-thumb-slate-400 scrollbar-track-slate-300 scrollbar-w-1.5 scrollbar-thumb scrollbar-thumb-rounded-md scroll"
           >
             {messages?.map((message, index) => (
               <Message message={message} key={index} />
             ))}
           </div>
-          <div className="sticky border-t bottom-0 p-2 md:flex justify-center items-center hidden">
+          <div className="sticky border-t bottom-0 p-2 lg:flex justify-center items-center hidden">
             <form
               onSubmit={handleSubmit}
               className="flex justify-center items-center w-full"
@@ -95,7 +95,7 @@ export default function GameOptions() {
       </div>
       <form
         onSubmit={handleSubmit}
-        className="flex justify-center items-center w-full md:hidden"
+        className="flex justify-center items-center w-full lg:hidden"
       >
         <Input
           value={message}

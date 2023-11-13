@@ -10,7 +10,7 @@ import { Room } from "@/utils/interfaces";
 import { roomConnected } from "@/redux/slices/roomSlice";
 import { useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react";
+import { Check, Copy, Loader2 } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { nanoid } from "nanoid";
 
@@ -36,6 +36,7 @@ export default function CreateRoomForm({ roomId }: { roomId: string }) {
   const { toast } = useToast();
 
   const [loading, setLoading] = useState<boolean>(false);
+  const [isCopying, setIsCopying] = useState<boolean>(false);
 
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
@@ -65,6 +66,12 @@ export default function CreateRoomForm({ roomId }: { roomId: string }) {
     };
   }, []);
 
+  const copyRoomId = async () => {
+    setIsCopying(true);
+    await navigator.clipboard.writeText(roomId);
+    setTimeout(() => setIsCopying(false), 2000);
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="flex flex-col gap-y-7">
@@ -73,19 +80,33 @@ export default function CreateRoomForm({ roomId }: { roomId: string }) {
           <Input
             type="text"
             placeholder="qwerty"
+            className="text-black font-medium"
             maxLength={18}
             {...register("username", { required: true, maxLength: 18 })}
           />
         </div>
         <div className="flex flex-col gap-y-2">
           <Label>Room ID</Label>
-          <Input
-            type="text"
-            readOnly
-            {...register("roomId", { required: true })}
-          />
+          <div className="relative h-auto w-auto">
+            <Input
+              type="text"
+              className="text-black font-medium"
+              readOnly
+              {...register("roomId", { required: true })}
+            />
+            <div className="absolute top-0 bottom-0 right-2 flex items-center justify-center">
+              {isCopying ? (
+                <Check className="w-4 h-4 text-black" />
+              ) : (
+                <Copy
+                  className="w-4 h-4 text-black cursor-pointer"
+                  onClick={copyRoomId}
+                />
+              )}
+            </div>
+          </div>
         </div>
-        <Button type="submit" className="bg-blue-800 hover:bg-blue-900">
+        <Button type="submit" className="bg-green-600 hover:bg-green-500">
           {" "}
           {loading ? (
             <Loader2 className="animate-spin h-5 w-5"></Loader2>

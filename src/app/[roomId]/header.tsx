@@ -93,7 +93,7 @@ export default function Header() {
                     : room.hintWord) ?? ""
                 ).map((char, index) => (
                   <span
-                    className="mx-1 md:text-lg text-sm font-medium"
+                    className="mx-[2px] sm:mx-1 md:text-lg sm:text-sm text-xs font-medium"
                     key={index}
                   >
                     {char}

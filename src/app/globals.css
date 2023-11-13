@@ -93,3 +93,7 @@ select,
 a {
   -webkit-tap-highlight-color: transparent !important;
 }
+
+.polygon {
+  clip-path: polygon(0% 0%, 0% 100%, 100% 100%);
+}

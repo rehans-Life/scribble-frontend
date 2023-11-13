@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ui/theme-provider";
 import ReduxProvider from "@/components/redux-provider";
 import { Toaster } from "@/components/ui/toaster";
 import SocketProvider from "@/components/socket-provider";
 import SoundProvider from "@/components/sound-provider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`bg-[url('/bg-1.avif')]`}>
+      <body className={`bg-[url('/background.png')]`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ReduxProvider>
             <SocketProvider>

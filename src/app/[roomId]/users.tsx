@@ -69,8 +69,12 @@ export default function Users() {
   };
 
   return (
-    <div className="flex flex-col flex-1 w-full h-full md:flex-0 md:h-min">
-      <div className="md:max-h-[35%] bg-white rounded-sm overflow-y-scroll overflow-x-hidden scrollbar scrollbar-thumb-slate-400 scrollbar-w-1.5 scrollbar-thumb scrollbar-thumb-rounded-md scroll">
+    <div className="w-full flex-1 h-full lg:h-auto lg:flex-none rounded-sm overflow-hidden">
+      <div
+        className="lg:max-h-[200px] max-h-full bg-white rounded-sm 
+    overflow-y-auto overflow-x-hidden scrollbar scrollbar-thumb-slate-400 scrollbar-track-slate-300 
+    scrollbar-w-1.5 scrollbar-thumb scrollbar-thumb-rounded-md scroll"
+      >
         {rankedUsers?.map((user, index) => (
           <User
             key={user.id}

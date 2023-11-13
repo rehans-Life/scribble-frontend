@@ -52,21 +52,27 @@ export default function JoinRoomForm() {
       });
     };
 
+    const onError = () => {
+      setLoading(false);
+    };
+
     socket.on("room-joined", onRoomJoined);
     socket.on("room-not-found", onRoomNotFound);
+    socket.on("error", onError);
 
     return () => {
       socket.off("room-joined", onRoomJoined);
       socket.off("room-not-found", onRoomNotFound);
+      socket.off("error", onError);
     };
   }, []);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"}>Join a Room</Button>
+        <Button className="bg-blue-700 hover:bg-blue-800">Join a Room</Button>
       </DialogTrigger>
-      <DialogContent className="max-w-[400px]">
+      <DialogContent className="max-w-[400px] rounded-sm">
         <DialogHeader>
           <DialogTitle>Join a room now!</DialogTitle>
         </DialogHeader>
@@ -116,7 +122,7 @@ export default function JoinRoomForm() {
                 {loading ? (
                   <Loader2 className="animate-spin h-5 w-5"></Loader2>
                 ) : (
-                  "Join"
+                  "Join Room"
                 )}
               </Button>
             </div>

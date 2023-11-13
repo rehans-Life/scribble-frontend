@@ -29,9 +29,9 @@ export default function Game() {
   }, []);
 
   return (
-    <div className="w-full max-w-[1100px] flex flex-col justify-center gap-y-2 h-full flex-grow md:py-6 py-2">
+    <div className="w-full max-w-[1200px] flex flex-col justify-center gap-y-2 h-full flex-grow md:py-6 py-2">
       <Header />
-      <div className="w-full flex-grow flex flex-col md:grid md:grid-cols-[calc(100%-300px)_300px] gap-y-2 md:max-h-[600px] px-1 pb-1 md:p-0">
+      <div className="w-full flex-grow flex flex-col lg:grid lg:grid-cols-[calc(100%-300px)_300px] gap-y-2 lg:max-h-[600px] px-1 pb-1 lg:p-0">
         <Canvas />
         <GameOptions />
       </div>

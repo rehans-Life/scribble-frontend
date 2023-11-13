@@ -34,7 +34,9 @@ export default function Message({ message }: { message: Message }) {
             message.type === "local" ? "text-green-500" : "text-black"
           } text-black-600 ${common}`}
         >
-          <span className="font-semibold mr-1">{message.username}:</span>{" "}
+          <span className="font-semibold mr-1 break-words">
+            {message.username}:
+          </span>{" "}
           <span className="break-words">{message.content}</span>
         </div>
       );
