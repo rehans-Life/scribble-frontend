@@ -64,53 +64,77 @@ export default function Footer() {
       >
         <polygon points="0,0 1,1 0,1"></polygon>
       </svg>
-      <div className="w-full bg-[rgba(12,44,150,0.75)] md:p-6 py-6 p-3  flex flex-col md:flex-row gap-5 rounded-sm justify-center">
-        <div className="bg-[rgba(12,44,150,0.75)] h-auto w-full md:w-[350px] p-3 py-5 flex flex-col gap-y-5 text-white relative">
-          <div className="flex items-center justify-center">
-            <FaQuestion className="text-xl absolute left-3 top-7" />
-            <div className="font-semibold md:text-2xl text-xl">About</div>
+      <div className="bg-[rgba(12,44,150,0.75)]">
+        <div className="w-full md:p-6 py-6 p-3 flex flex-col md:flex-row gap-5 rounded-sm justify-center">
+          <div className="bg-[rgba(12,44,150,0.75)] h-auto w-full md:w-[350px] p-3 py-5 flex flex-col gap-y-5 text-white relative">
+            <div className="flex items-center justify-center">
+              <FaQuestion className="text-xl absolute left-3 top-7" />
+              <div className="font-semibold md:text-2xl text-xl">About</div>
+            </div>
+            <div className="flex flex-col md:text-md text-sm">
+              <div>
+                <b>Scribble</b> is a free online multiplayer drawing and
+                guessing pictionary game.
+              </div>
+              <br />
+              <div>
+                A normal game consists of some players, where every round a
+                player has to draw their chosen word and others have to guess it
+                to gain points!
+              </div>
+              <br />
+              <div>
+                The person with the most points at the end of the game, will
+                then be crowned as the winner!
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col md:text-md text-sm">
-            <div>
-              <b>Scribble</b> is a free online multiplayer drawing and guessing
-              pictionary game.
+          <div className="w-full md:w-[350px] relative bg-[rgba(12,44,150,0.75)] flex flex-col gap-y-5 text-white md:p-6 py-6 p-3 ">
+            <div className="flex items-center justify-center">
+              <Pencil className="text-xl absolute left-3 top-7" />
+              <div className="font-semibold md:text-2xl text-xl">
+                How to Play
+              </div>
             </div>
-            <br />
-            <div>
-              A normal game consists of some players, where every round a player
-              has to draw their chosen word and others have to guess it to gain
-              points!
+            <div className="flex-1 w-full relative">
+              {pages.map((des, i) => (
+                <Page key={i} num={i + 1} description={des} />
+              ))}
             </div>
-            <br />
-            <div>
-              The person with the most points at the end of the game, will then
-              be crowned as the winner!
+            <div className="flex items-center justify-center py-1">
+              {pages.map((_, i) => (
+                <div
+                  key={i}
+                  className={`rounded-full cursor-pointer ${
+                    activePage === i
+                      ? "bg-white h-[14px] w-[14px]"
+                      : "bg-slate-400 h-3 w-3"
+                  } mx-2 hover:bg-white transition-all ease-out duration-75`}
+                  onClick={() => setActivePage(i)}
+                ></div>
+              ))}{" "}
             </div>
           </div>
         </div>
-        <div className="w-full md:w-[350px] relative bg-[rgba(12,44,150,0.75)] flex flex-col gap-y-5 text-white md:p-6 py-6 p-3 ">
-          <div className="flex items-center justify-center">
-            <Pencil className="text-xl absolute left-3 top-7" />
-            <div className="font-semibold md:text-2xl text-xl">How to Play</div>
-          </div>
-          <div className="flex-1 w-full relative">
-            {pages.map((des, i) => (
-              <Page key={i} num={i + 1} description={des} />
-            ))}
-          </div>
-          <div className="flex items-center justify-center py-1">
-            {pages.map((_, i) => (
-              <div
-                key={i}
-                className={`rounded-full cursor-pointer ${
-                  activePage === i
-                    ? "bg-white h-[14px] w-[14px]"
-                    : "bg-slate-400 h-3 w-3"
-                } mx-2 hover:bg-white transition-all ease-out duration-75`}
-                onClick={() => setActivePage(i)}
-              ></div>
-            ))}{" "}
-          </div>
+        <div className="text-md text-white pt-2 pb-3 text-center">
+          Crafted by{" "}
+          <a
+            href="https://github.com/rehans-Life"
+            target="__blank"
+            rel="noreferrer"
+            className="font-medium underline cursor-pointer underline-offset-4"
+          >
+            Rehan
+          </a>
+          . The source code is on{" "}
+          <a
+            href="https://github.com/rehans-Life/scribble-frontend"
+            target="__blank"
+            rel="noreferrer"
+            className="font-medium underline cursor-pointer underline-offset-4"
+          >
+            Github
+          </a>
         </div>
       </div>
     </div>
