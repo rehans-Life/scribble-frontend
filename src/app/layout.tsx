@@ -21,9 +21,9 @@ export default function RootLayout({
       <title>Scribble - Free Multiplayer Drawing & Guessing Game</title>
       <meta
         name="description"
-        content="scribbel is a free multiplayer drawing and guessing game. Draw and guess words with your friends and people all around the world! Score the most points and be the winner!"
+        content="scribble is a free multiplayer drawing and guessing game. Draw and guess words with your friends and people all around the world! Score the most points and be the winner!"
       ></meta>
-      <link rel="shortcut icon" href="/favicon.png" type="image/x-icon" />
+      <link rel="shortcut icon" href="/favicon.png" type="image/png" />
       <body className={`bg-[url('/background.png')]`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ReduxProvider>

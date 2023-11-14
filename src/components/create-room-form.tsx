@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { Check, Copy, Loader2 } from "lucide-react";
 import { useToast } from "./ui/use-toast";
 import { nanoid } from "nanoid";
+import CopyButton from "./copy-button";
 
 interface Inputs {
   username: string;
@@ -94,15 +95,10 @@ export default function CreateRoomForm({ roomId }: { roomId: string }) {
               readOnly
               {...register("roomId", { required: true })}
             />
-            <div className="absolute top-0 bottom-0 right-2 flex items-center justify-center">
-              {isCopying ? (
-                <Check className="w-4 h-4 text-black" />
-              ) : (
-                <Copy
-                  className="w-4 h-4 text-black cursor-pointer"
-                  onClick={copyRoomId}
-                />
-              )}
+            <div className="absolute top-0 bottom-0 right-2 flex items-center justify-center text-black">
+              <CopyButton value={roomId}>
+                <Copy className="w-4 h-4 cursor-pointer" />
+              </CopyButton>
             </div>
           </div>
         </div>
