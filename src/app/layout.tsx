@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="touch-none">
+    <html lang="en">
       <title>Scribble - Free Multiplayer Drawing & Guessing Game</title>
       <meta
         name="description"
