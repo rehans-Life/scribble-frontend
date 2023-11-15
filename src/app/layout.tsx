@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/ui/theme-provider";
 import ReduxProvider from "@/components/redux-provider";
 import { Toaster } from "@/components/ui/toaster";
 import SocketProvider from "@/components/socket-provider";
@@ -17,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="touch-none">
       <title>Scribble - Free Multiplayer Drawing & Guessing Game</title>
       <meta
         name="description"
@@ -25,14 +24,12 @@ export default function RootLayout({
       ></meta>
       <link rel="shortcut icon" href="/favicon.png" type="image/png" />
       <body className={`bg-[url('/background.png')]`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ReduxProvider>
-            <SocketProvider>
-              <SoundProvider>{children}</SoundProvider>
-            </SocketProvider>
-          </ReduxProvider>
-          <Toaster />
-        </ThemeProvider>
+        <ReduxProvider>
+          <SocketProvider>
+            <SoundProvider>{children}</SoundProvider>
+          </SocketProvider>
+        </ReduxProvider>
+        <Toaster />
       </body>
     </html>
   );

@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test:chrome": "npx playwright test --headed --browser=chromium",
+    "test:firefox": "npx playwright test --headed --browser=firefox",
+    "test:safari": "npx playwright test --headed --project=webkit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
@@ -48,6 +51,7 @@
     "zod": "^3.22.4"
   },
   "devDependencies": {
+    "@playwright/test": "^1.39.0",
     "@types/fabric": "^5.3.5",
     "@types/node": "^20",
     "@types/react": "^18",

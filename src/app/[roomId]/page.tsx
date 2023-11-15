@@ -29,10 +29,10 @@ export default function Room() {
       <div className="flex gap-x-[2px] p-1 w-full justify-center">
         <Input
           value={room?.id}
-          className="font-medium md:w-[40%] w-full rounded-[2px]"
+          className="font-medium md:w-[40%] w-full rounded-[2px] focus:outline-none focus:shadow-none focus:border-none"
           readOnly
         />
-        <Button className="bg-green-500 hover:bg-green-600 rounded-[2px]">
+        <Button className="bg-green-500 hover:bg-green-600 rounded-[2px] ">
           <CopyButton value={room?.id ?? ""}>
             <div>Copy</div>
           </CopyButton>

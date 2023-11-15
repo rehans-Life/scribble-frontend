@@ -4,8 +4,13 @@ import { useDispatch } from "react-redux";
 import { useToast } from "./ui/use-toast";
 import { useEffect } from "react";
 import { socket } from "@/utils/socket";
-import { CanvasState, Message, User } from "@/utils/interfaces";
-import { addMessage, setCanvas, setUsers } from "@/redux/slices/roomSlice";
+import { CanvasState, Message, Room, User } from "@/utils/interfaces";
+import {
+  addMessage,
+  roomConnected,
+  setCanvas,
+  setUsers,
+} from "@/redux/slices/roomSlice";
 import { useSetAtom } from "jotai";
 import { timerAtom } from "@/atoms/timerAtom";
 
@@ -42,6 +47,11 @@ export default function SocketProvider({
       });
     };
 
+    const onRoomChanges = (room: Room) => {
+      dispatch(roomConnected(room));
+    };
+
+    socket.on("room-changed", onRoomChanges);
     socket.on("board-change", onBoardChange);
     socket.on("members-changed", onMembersChanged);
     socket.on("new-message-recieved", onNewMessageRecieved);
@@ -54,6 +64,7 @@ export default function SocketProvider({
       socket.off("error", onError);
       socket.off("board-change", onBoardChange);
       socket.off("new-timer", onTimer);
+      socket.off("room-changed", onRoomChanges);
     };
   }, []);
 

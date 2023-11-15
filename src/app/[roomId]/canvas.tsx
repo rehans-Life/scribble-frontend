@@ -64,6 +64,7 @@ export default function Canvas() {
   const imageRef = useRef<Konva.Image | null>(null);
 
   const resizePaste = useRef<boolean>(false);
+  const supportsPassive = useRef<boolean>(false);
 
   const isDrawer = useMemo<boolean>(() => {
     return drawer?.id === socket.id;
@@ -77,6 +78,30 @@ export default function Canvas() {
   useLayoutEffect(() => {
     onResize();
   }, [drawer?.id]);
+
+  const preventDefault = (e: TouchEvent) => {
+    e.preventDefault();
+  };
+
+  const disableScroll = () => {
+    window.addEventListener(
+      "touchmove",
+      preventDefault,
+      supportsPassive.current ? { passive: false } : false
+    );
+  };
+
+  const enableScroll = () => {
+    window.removeEventListener("touchmove", preventDefault);
+  };
+
+  useEffect(() => {
+    if (isDrawing.current) {
+      disableScroll();
+    } else {
+      enableScroll();
+    }
+  }, [isDrawing.current]);
 
   const createCanvasState = useCallback(() => {
     const clonedLayer = layerRef.current?.clone();
@@ -252,6 +277,18 @@ export default function Canvas() {
   useEffect(() => {
     const initialCanvasState = createCanvasState();
     if (initialCanvasState) setCanvasStates([initialCanvasState]);
+
+    try {
+      window.addEventListener(
+        "test",
+        () => {},
+        Object.defineProperty({}, "passive", {
+          get: function () {
+            supportsPassive.current = true;
+          },
+        })
+      );
+    } catch (e) {}
   }, []);
 
   useEffect(() => {
@@ -480,7 +517,9 @@ export default function Canvas() {
         </BounceIn>
         <Stage
           ref={stageRef}
-          className="rounded-md overflow-hidden"
+          className={`rounded-md overflow-hidden ${
+            isDrawer ? "cursor-crosshair" : "cursor-default"
+          }`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
